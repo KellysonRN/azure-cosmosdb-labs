@@ -1,4 +1,4 @@
-namespace DotNetProject.Tests;
+namespace DotNetProject.Api.Tests;
 
 [TestClass]
 public class UnitTest1
