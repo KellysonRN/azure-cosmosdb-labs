@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetProject.Api", "src\Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetProject.Tests", "tests\DotNetProject.Api.Tests\DotNetProject.Api.Tests.csproj", "{A74768FD-9252-4969-BEC4-D96038D9D500}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5DCB9D01-E317-4223-93C9-750EFB50BA32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetProject.Domain", "src\DotNetProject.Domain\DotNetProject.Domain.csproj", "{EE693D73-2AAE-40C6-8670-EA7D650F3AD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E3C200CF-0D85-4F72-8B19-E04E56294987}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetProject.Domain.Tests", "tests\DotNetProject.Domain.Tests\DotNetProject.Domain.Tests.csproj", "{CCD8A2B2-E696-4A4F-AC5A-3744F4AC963C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +32,17 @@ Global
 		{A74768FD-9252-4969-BEC4-D96038D9D500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A74768FD-9252-4969-BEC4-D96038D9D500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A74768FD-9252-4969-BEC4-D96038D9D500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE693D73-2AAE-40C6-8670-EA7D650F3AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE693D73-2AAE-40C6-8670-EA7D650F3AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE693D73-2AAE-40C6-8670-EA7D650F3AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE693D73-2AAE-40C6-8670-EA7D650F3AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD8A2B2-E696-4A4F-AC5A-3744F4AC963C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD8A2B2-E696-4A4F-AC5A-3744F4AC963C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD8A2B2-E696-4A4F-AC5A-3744F4AC963C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD8A2B2-E696-4A4F-AC5A-3744F4AC963C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE693D73-2AAE-40C6-8670-EA7D650F3AD1} = {5DCB9D01-E317-4223-93C9-750EFB50BA32}
+		{CCD8A2B2-E696-4A4F-AC5A-3744F4AC963C} = {E3C200CF-0D85-4F72-8B19-E04E56294987}
 	EndGlobalSection
 EndGlobal
