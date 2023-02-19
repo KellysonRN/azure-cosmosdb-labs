@@ -8,6 +8,15 @@ This will template to quickly start new labs or PoCs.
 
 The project requires [.NET 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
 
+## Technologies, Architecture and others stuffs more
+
+- ASP.NET Core
+- Clean Architecture
+- Graph Database with Neo4J
+- Docker container image
+- Test-Driven Development with MSTest
+- Swagger
+
 ## Compatible IDEs
 
 Tested on:
@@ -31,8 +40,6 @@ dotnet test
 ```
 
 - ### Run the application
-
-
 
 ```powershell
 # Run the application which will be listening on port `5099`.
