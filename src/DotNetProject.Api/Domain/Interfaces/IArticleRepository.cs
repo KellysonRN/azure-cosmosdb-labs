@@ -9,4 +9,5 @@ public interface IArticleRepository
     Task<IEnumerable<Article>> GetAll();
     Task<bool> Update(Article obj);
     Task<bool> Delete(int key);
+    Task<bool> CreateRelationships(Article obj, Article obj2);
 }

@@ -81,4 +81,22 @@ public class ArticleRepository : IArticleRepository
             return false;
         }
     }
+
+    public async Task<bool> CreateRelationships(Article obj, Article obj2)
+    {
+        try
+        {
+            await _client.Cypher.Match("(a:Article)", "(b:Article)")
+                                .Where((Article a) => a.Id == obj.Id)                               
+                                .AndWhere((Article b) => b.Id == obj2.Id)
+                                .Create("(a)-[r:RELTYPE]->(b)")
+                                .ExecuteWithoutResultsAsync();
+
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 }

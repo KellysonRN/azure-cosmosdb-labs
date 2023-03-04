@@ -43,6 +43,23 @@ namespace DotNetProject.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("act")]
+        public async Task<IActionResult> CreateRelationships([FromQuery] int id1, int id2)
+        {
+            Article a = new Article()
+            {
+                Id = id1,
+                AuthorName = "KellysonRN",
+                Title = "Parte 1",
+                Subject = "Graph Database"
+            };
+            Article b = new Article(id2, "Parte 2", "Graph Database", "KellysonRN");
+
+            await _repository.CreateRelationships(a, b);
+
+            return Ok();
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Article model)
         {
