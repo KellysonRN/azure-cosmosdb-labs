@@ -7,27 +7,41 @@ namespace DotNetProject.Infrastructure.Persistence.Context;
 
 public class GremlinContext : IDisposable
 {
-    private string Host = "aca-my-app-eastus.gremlin.cosmos.azure.com";
-    private string PrimaryKey = "<your-primary-key>";
-    private string Database = "my-database";
-    private string Container = "my-graph";
+    private string Host = string.Empty;
+
+    private string PrimaryKey = string.Empty;
+
+    private string Database = string.Empty;
+
+    private string Container = string.Empty;
+
     private bool EnableSSL = true;
+
     private int Port = 443;
 
     private GremlinClient _gremlinClient;
+
     public GremlinClient GremlinClient
     {
         get { return _gremlinClient; }
         set { _gremlinClient = value; }
     }
 
-    public GremlinContext()
+    public GremlinContext(IConfiguration config)
     {
-        string containerLink = "/dbs/" + Database + "/colls/" + Container;
+        Host = $"{config.GetValue<string>("Database:Host")}";
+        Database = $"{config.GetValue<string>("Database:Name")}";
+        PrimaryKey = $"{config.GetValue<string>("PrimaryKey")}";
+        
+        string containerLink = $"/dbs/{Database}/colls/{Container}";
 
-        var gremlinServer = new GremlinServer(Host, Port, enableSsl: EnableSSL,
-                                                username: containerLink,
-                                                password: PrimaryKey);
+        var gremlinServer = new GremlinServer(
+               hostname: Host,
+               port: Port,
+               enableSsl: EnableSSL,
+               username: containerLink,
+               password: PrimaryKey
+           );
 
         ConnectionPoolSettings connectionPoolSettings = new ConnectionPoolSettings()
         {
@@ -42,12 +56,16 @@ public class GremlinContext : IDisposable
             options.KeepAliveInterval = TimeSpan.FromSeconds(10);
         });
 
+        var serializer = new GraphSON2MessageSerializer(new GraphSON2Reader(), new GraphSON2Writer());
+
         _gremlinClient = new GremlinClient(gremlinServer,
-                                           new GraphSON2Reader(),
-                                           new GraphSON2Writer(),
-                                           GremlinClient.GraphSON2MimeType,
-                                           connectionPoolSettings,
-                                           webSocketConfiguration);
+                                            serializer,
+                                            connectionPoolSettings,
+                                            webSocketConfiguration);
+
+        _gremlinClient = new GremlinClient(
+                gremlinServer: gremlinServer,
+                connectionPoolSettings: connectionPoolSettings);
     }
 
     public void Dispose()

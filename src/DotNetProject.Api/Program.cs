@@ -8,14 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<Neo4jContext>();
+
+builder.Services.AddScoped<GremlinContext>();
+
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 
+// Neo4J
 var client = new BoltGraphClient(new Uri("bolt://localhost:7687"), "neo4j", "Test@123");
 client.ConnectAsync();
+
 builder.Services.AddSingleton<IGraphClient>(client);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
