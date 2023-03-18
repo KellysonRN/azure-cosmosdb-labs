@@ -1,0 +1,27 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  neo4j:
+    image: neo4j:5.5.0-enterprise
+    restart: unless-stopped
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - ./neo4j/conf:/conf
+      - ./neo4j/data:/data
+      - ./neo4j/import:/import
+      - ./neo4j/logs:/logs
+      - ./neo4j/plugins:/plugins
+    environment: 
+      # Raise memory limits
+      - NEO4J_dbms_cluster_discovery_endpoints=server1-public-address:5000,server2-public-address:5000,server3-public-address:5000 
+      - NEO4J_server_discovery_advertised_address=public-address:5000 
+      - NEO4J_server_cluster_advertised_address=public-address:6000 
+      - NEO4J_server_cluster.raft.advertised_address=public-address:7000 
+      - NEO4J_server_default_advertised_address=public-address 
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes 
+      - NEO4j_server_bolt_advertised_address=public-address:7687 
+      - NEO4j_server_http_advertised_address=public-address:7474
