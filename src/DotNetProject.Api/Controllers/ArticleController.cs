@@ -46,13 +46,8 @@ namespace DotNetProject.Api.Controllers
         [HttpPost("act")]
         public async Task<IActionResult> CreateRelationships([FromQuery] int id1, int id2)
         {
-            Article a = new Article()
-            {
-                Id = id1,
-                AuthorName = "KellysonRN",
-                Title = "Parte 1",
-                Subject = "Graph Database"
-            };
+            Article a = new Article(id1, "KellysonRN", "Parte 1", "Graph Database");
+            
             Article b = new Article(id2, "Parte 2", "Graph Database", "KellysonRN");
 
             await _repository.CreateRelationships(a, b);

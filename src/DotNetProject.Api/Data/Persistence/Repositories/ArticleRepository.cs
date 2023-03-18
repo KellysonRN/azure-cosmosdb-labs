@@ -55,11 +55,12 @@ public class ArticleRepository : IArticleRepository
         return articles;
     }
 
-    public async Task<Article> Retrieve(int key)
+    public async Task<Article?> Retrieve(int key)
     {
         var article = await _client.Cypher.Match("(a:Article)")
                                                   .Where((Article a) => a.Id == key)
                                                   .Return(a => a.As<Article>()).ResultsAsync;
+
 
         return article.LastOrDefault();
     }
