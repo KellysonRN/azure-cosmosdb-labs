@@ -1,13 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>9639adc9-86fe-4cdd-95ee-9c28d647c038</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>    
-    <PackageReference Include="Gremlin.NET" Version="3.4.13" />    
+    <PackageReference Include="Gremlin.NET" Version="3.6.2" />    
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />    
     <PackageReference Include="Neo4jClient" Version="5.1.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
